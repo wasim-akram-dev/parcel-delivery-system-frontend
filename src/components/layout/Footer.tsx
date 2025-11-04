@@ -14,9 +14,9 @@ const Footer = () => {
               <Logo />
             </div>{" "}
             <p className="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left dark:text-gray-400">
-              {" "}
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-              consequuntur amet culpa cum itaque neque.{" "}
+              Runner Courier Service Limited has been playing a leading role in
+              these service activities of courier and parcel since its inception
+              in 1983.
             </p>{" "}
             <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
               {" "}
@@ -208,7 +208,7 @@ const Footer = () => {
                     href="#"
                   >
                     {" "}
-                    Web Development{" "}
+                    Courier Service{" "}
                   </a>{" "}
                 </li>{" "}
                 <li>
@@ -218,7 +218,7 @@ const Footer = () => {
                     href="#"
                   >
                     {" "}
-                    Web Design{" "}
+                    Parcel Service{" "}
                   </a>{" "}
                 </li>{" "}
                 <li>
@@ -228,7 +228,7 @@ const Footer = () => {
                     href="#"
                   >
                     {" "}
-                    Marketing{" "}
+                    Value Declared{" "}
                   </a>{" "}
                 </li>{" "}
                 <li>
@@ -238,7 +238,7 @@ const Footer = () => {
                     href="#"
                   >
                     {" "}
-                    Google Ads{" "}
+                    E-com service{" "}
                   </a>{" "}
                 </li>{" "}
               </ul>{" "}
@@ -321,7 +321,7 @@ const Footer = () => {
                     </svg>{" "}
                     <span className="text-gray-700 dark:text-gray-300">
                       {" "}
-                      john@doe.com{" "}
+                      mick@tyson.com{" "}
                     </span>{" "}
                   </a>{" "}
                 </li>{" "}
@@ -408,7 +408,7 @@ const Footer = () => {
             </p>{" "}
             <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0 dark:text-gray-400">
               {" "}
-              © 2022 Company Name{" "}
+              © 2025 Runner Courier Service Limited{" "}
             </p>{" "}
           </div>{" "}
         </div>{" "}
