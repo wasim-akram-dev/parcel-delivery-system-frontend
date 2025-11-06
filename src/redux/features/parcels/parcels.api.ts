@@ -2,6 +2,13 @@ import { baseApi } from "@/redux/baseApi";
 
 const parcelsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    login: builder.mutation({
+      query: (userInfo) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: userInfo,
+      }),
+    }),
     getAllParcels: builder.query({
       query: () => ({
         url: "/parcels/view-all-parcels",
@@ -17,4 +24,5 @@ const parcelsApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllParcelsQuery, useGetAllUsersQuery } = parcelsApi;
+export const { useLoginMutation, useGetAllParcelsQuery, useGetAllUsersQuery } =
+  parcelsApi;
