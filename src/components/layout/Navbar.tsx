@@ -11,12 +11,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-// import {
-//   authApi,
-//   useLogoutMutation,
-//   useUserInfoQuery,
-// } from "@/redux/features/auth/auth.api";
-import { Link } from "react-router";
+import {
+  authApi,
+  useLogoutMutation,
+  useUserInfoQuery,
+} from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hooks";
+import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 import { ModeToggle } from "./mode-toggle";
 
 // Navigation links array to be used in both desktop and mobile menus
@@ -27,19 +29,28 @@ const navigationLinks = [
 ];
 
 export default function Navbar() {
-  // const { data } = useUserInfoQuery();
-  // const [logout] = useLogoutMutation();
-  // const dispatch = useAppDispatch();
-
-  const data = {
-    data: {
-      email: "abc@gmail.com",
-    },
-  };
+  const navigate = useNavigate();
+  const { data } = useUserInfoQuery(undefined);
+  console.log("data", data);
+  const [logout] = useLogoutMutation();
+  const dispatch = useAppDispatch();
 
   const handleLogout = async () => {
-    // await logout(undefined);
-    // dispatch(authApi.util.resetApiState());
+    try {
+      const res = await logout(undefined);
+      dispatch(authApi.util.resetApiState());
+      if (res) {
+        toast.success("Logged Out Successfully");
+        navigate("/");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("error", error);
+      const err = error as Error;
+      toast("❌ Failed to login!", {
+        description: err?.message || "Something went wrong",
+      });
+    }
   };
   return (
     <header className="border-b  md:px-6">
@@ -120,7 +131,7 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <ModeToggle />
-          {data?.data?.email && (
+          {data?.user?.email && (
             <Button
               onClick={handleLogout}
               variant={"outline"}
@@ -129,7 +140,7 @@ export default function Navbar() {
               Logout
             </Button>
           )}
-          {!data?.data?.email && (
+          {!data?.user?.email && (
             <Button asChild className="text-sm">
               <Link to="/login">Login</Link>
             </Button>

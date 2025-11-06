@@ -2,6 +2,8 @@ import App from "@/App";
 import AboutPage from "@/pages/About/AboutPage";
 import ContactPage from "@/pages/Contact/ContactPage";
 import Home from "@/pages/Home/Home";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
         Component: ContactPage,
       },
     ],
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
+  {
+    path: "/login",
+    Component: Login,
   },
 ]);
 
