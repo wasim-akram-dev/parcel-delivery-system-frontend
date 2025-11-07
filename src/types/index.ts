@@ -14,7 +14,7 @@ export interface ISidebarItem {
 export type TRole = "ADMIN" | "SENDER" | "RECEIVER";
 
 // view-all-parcel interface
-export interface parcel {
+export interface IParcel {
   _id: string;
   trackingId: string;
   sender_email: string;
@@ -26,7 +26,7 @@ export interface parcel {
 }
 
 // view-all-user interface
-export interface user {
+export interface IUser {
   _id: string;
   name: string;
   email: string;

@@ -8,12 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllParcelsQuery } from "@/redux/features/parcels/parcels.api";
-import type { IParcel } from "@/types";
+import { useGetAllUsersQuery } from "@/redux/features/parcels/parcels.api";
+import type { IUser } from "@/types";
 
-const AllParcels = () => {
-  const { data: AllParcels, isLoading } = useGetAllParcelsQuery(undefined);
-  console.log("data", AllParcels);
+const AllUsers = () => {
+  const { data: allUsers, isLoading } = useGetAllUsersQuery(undefined);
+  console.log("users", allUsers);
 
   return isLoading ? (
     <div className="min-h-screen flex flex-col justify-center align-middle items-center gap-4">
@@ -25,48 +25,48 @@ const AllParcels = () => {
         <TableHeader>
           <TableRow className="bg-gray-100 border">
             <TableHead className="border text-center">S.N</TableHead>
-            <TableHead className="border text-center">tracking_Id</TableHead>
-            <TableHead className="border text-center">Sender Email</TableHead>
-            <TableHead className="border text-center">Receiver Email</TableHead>
-            <TableHead className="border text-center">From Address</TableHead>
-            <TableHead className="border text-center">To Address</TableHead>
+            <TableHead className="border text-center">user_id</TableHead>
+            <TableHead className="border text-center">Name</TableHead>
+            <TableHead className="border text-center">Email</TableHead>
+            <TableHead className="border text-center">Role</TableHead>
+            <TableHead className="border text-center">is_Active</TableHead>
+            <TableHead className="border text-center">is_Verified</TableHead>
             <TableHead className="border text-center">created_At</TableHead>
-            <TableHead className="border text-center">Parcel Status</TableHead>
             <TableHead className="border text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {AllParcels?.data.map((parcel: IParcel, index: number) => (
-            <TableRow key={parcel._id} className="text-center">
+          {allUsers?.data.map((singleUser: IUser, index: number) => (
+            <TableRow key={singleUser._id} className="text-center">
               <TableCell className="font-medium border text-center">
                 {index + 1}
               </TableCell>
               <TableCell className="font-medium border text-center">
-                {parcel.trackingId}
+                {singleUser._id}
+              </TableCell>
+              <TableCell className="font-medium border text-center">
+                {singleUser.name}
               </TableCell>
               <TableCell className="border text-center">
-                {parcel.sender_email}
+                {singleUser.email}
               </TableCell>
               <TableCell className="border text-center">
-                {parcel.receiver_email}
+                {singleUser.role}
               </TableCell>
               <TableCell className="border text-center">
-                {parcel.fromAddress}
+                {singleUser.isActive}
               </TableCell>
               <TableCell className="border text-center">
-                {parcel.toAddress}
+                {singleUser.isVerified}
               </TableCell>
               <TableCell className="border text-center">
-                {parcel.createdAt}
-              </TableCell>
-              <TableCell className="border text-center">
-                {parcel.parcel_status}
+                {singleUser.createdAt}
               </TableCell>
               <TableCell className="border text-center">
                 <div className="flex flex-col gap-2">
-                  <Button>Block</Button>
-                  {/* change available parcel status*/}
-                  <Button>Dropdown</Button>
+                  <Button>
+                    {singleUser.isActive === "BLOCKED" ? "Unblock" : "Block"}
+                  </Button>
                 </div>
               </TableCell>
             </TableRow>
@@ -77,4 +77,4 @@ const AllParcels = () => {
   );
 };
 
-export default AllParcels;
+export default AllUsers;
