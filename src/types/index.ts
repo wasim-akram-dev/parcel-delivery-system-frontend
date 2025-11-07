@@ -23,6 +23,12 @@ export interface IParcel {
   toAddress: string;
   parcel_status: string;
   createdAt: string;
+  statusLog: {
+    location: string;
+    note: string;
+    status: string;
+    timestamp: string;
+  }[];
 }
 
 // view-all-user interface

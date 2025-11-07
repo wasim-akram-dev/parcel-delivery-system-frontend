@@ -21,8 +21,18 @@ const parcelsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllCreatedParcels: builder.query({
+      query: () => ({
+        url: "/parcels/me",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useGetAllParcelsQuery, useGetAllUsersQuery } =
-  parcelsApi;
+export const {
+  useLoginMutation,
+  useGetAllParcelsQuery,
+  useGetAllUsersQuery,
+  useGetAllCreatedParcelsQuery,
+} = parcelsApi;

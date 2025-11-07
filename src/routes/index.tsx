@@ -11,6 +11,7 @@ import { generateRoutes } from "@/utils/generateRoutes";
 import { withAuth } from "@/utils/withAuth";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
+import { senderSidebarItems } from "./senderSidebarItems";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/admin/view-all-parcels" /> },
       ...generateRoutes(adminSidebarItems),
+    ],
+  },
+  {
+    path: "/sender",
+    Component: withAuth(DashboardLayout, role.sender as TRole),
+    children: [
+      { index: true, element: <Navigate to="/sender/view-parcels" /> },
+      ...generateRoutes(senderSidebarItems),
     ],
   },
 ]);
