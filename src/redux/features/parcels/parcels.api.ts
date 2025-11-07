@@ -9,6 +9,12 @@ const parcelsApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    confirmParcel: builder.mutation({
+      query: (id) => ({
+        url: `/parcels/confirm-parcel/${id}`,
+        method: "PATCH",
+      }),
+    }),
     getAllParcels: builder.query({
       query: () => ({
         url: "/parcels/view-all-parcels",
@@ -49,4 +55,5 @@ export const {
   useGetAllCreatedParcelsQuery,
   useViewIncomingParcelsQuery,
   useViewDeliveryHistoryQuery,
+  useConfirmParcelMutation,
 } = parcelsApi;

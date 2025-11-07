@@ -76,6 +76,14 @@ const ViewDeliveryHistory = () => {
           )}
         </TableBody>
       </Table>
+      {parcelDeliveryHistory?.data?.length === 0 && (
+        <div className="text-center mt-16 space-y-2">
+          <p>
+            Your All <span className="font-bold">Delivery History</span> Will
+            Appear Here!
+          </p>
+        </div>
+      )}
     </div>
   );
 };

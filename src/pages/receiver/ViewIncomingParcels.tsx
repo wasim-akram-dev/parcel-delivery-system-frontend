@@ -36,7 +36,7 @@ const ViewIncomingParcels = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {incomingParcels?.data?.Incoming_Parcels.map(
+          {incomingParcels?.data?.Incoming_Parcels?.map(
             (parcel: IParcel, index: number) => (
               <TableRow key={parcel._id} className="text-center">
                 <TableCell className="font-medium border text-center">
@@ -76,6 +76,17 @@ const ViewIncomingParcels = () => {
           )}
         </TableBody>
       </Table>
+      {incomingParcels?.data?.length === 0 && (
+        <div className="text-center mt-16 space-y-2">
+          <h3 className="text-green-600 font-semibold">
+            Congrats! All Parcel Confirmed Successfully
+          </h3>
+          <p>
+            Your All <span className="font-bold">Incoming Parcel</span> Will
+            Appear Here!
+          </p>
+        </div>
+      )}
     </div>
   );
 };
