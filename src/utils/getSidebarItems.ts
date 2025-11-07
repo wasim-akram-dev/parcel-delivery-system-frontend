@@ -1,7 +1,7 @@
 import { role } from "@/constraints/role";
 import { adminSidebarItems } from "@/routes/adminSidebarItems";
+import { receiverSidebarItems } from "@/routes/receiverSidebarItems";
 import { senderSidebarItems } from "@/routes/senderSidebarItems";
-// import { receiverSidebarItems } from "@/router/receiverSidebarItems";
 import type { TRole } from "@/types";
 
 export const getSidebarItems = (userRole: TRole) => {
@@ -11,10 +11,12 @@ export const getSidebarItems = (userRole: TRole) => {
       return [...adminSidebarItems];
     // if admin can view all
     // return [...adminSidebarItems, ...senderSidebarItems, ...receiverSidebarItems]
+    // case "SENDER" :
     case role.sender:
       return [...senderSidebarItems];
-    // case role.receiver :
-    //     return [...receiverSidebarItems]
+    // case "RECEIVER" :
+    case role.receiver:
+      return [...receiverSidebarItems];
     default:
       break;
   }

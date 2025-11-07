@@ -27,6 +27,18 @@ const parcelsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    ViewIncomingParcels: builder.query({
+      query: () => ({
+        url: "/parcels/incoming-parcels",
+        method: "GET",
+      }),
+    }),
+    ViewDeliveryHistory: builder.query({
+      query: () => ({
+        url: "/parcels/delivery-history",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -35,4 +47,6 @@ export const {
   useGetAllParcelsQuery,
   useGetAllUsersQuery,
   useGetAllCreatedParcelsQuery,
+  useViewIncomingParcelsQuery,
+  useViewDeliveryHistoryQuery,
 } = parcelsApi;

@@ -23,6 +23,8 @@ export interface IParcel {
   toAddress: string;
   parcel_status: string;
   createdAt: string;
+  parcelType: string;
+  weight: number;
   statusLog: {
     location: string;
     note: string;
