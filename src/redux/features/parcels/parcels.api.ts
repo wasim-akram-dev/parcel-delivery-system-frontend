@@ -45,6 +45,13 @@ const parcelsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    createParcel: builder.mutation({
+      query: (parcelInfo) => ({
+        url: "/parcels",
+        method: "POST",
+        body: parcelInfo,
+      }),
+    }),
   }),
 });
 
@@ -56,4 +63,5 @@ export const {
   useViewIncomingParcelsQuery,
   useViewDeliveryHistoryQuery,
   useConfirmParcelMutation,
+  useCreateParcelMutation,
 } = parcelsApi;
