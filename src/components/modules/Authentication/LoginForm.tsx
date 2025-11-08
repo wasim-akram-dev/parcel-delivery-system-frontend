@@ -8,7 +8,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import config from "@/config";
 import { cn } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
@@ -25,22 +24,20 @@ export function LoginForm({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
-      console.log("res", res);
-      if (res.success) {
+      console.log("response from LoginForm:", res);
+      if (res?.data?.user) {
         toast.success("Logged in successfully");
-        navigate("/");
+        if (res?.data?.user?.role) {
+          navigate(`/${res?.data?.user?.role.toLowerCase()}`);
+        } else {
+          navigate("/");
+        }
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
-
       if (err.data.message === "Password does not match") {
         toast.error("Invalid credentials");
-      }
-
-      if (err.data.message === "User is not verified") {
-        toast.error("Your account is not verified");
-        navigate("/verify", { state: data.email });
       }
     }
   };
@@ -98,22 +95,6 @@ export function LoginForm({
             </Button>
           </form>
         </Form>
-
-        <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-          <span className="relative z-10 bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-
-        {/*//* http://localhost:5000/api/v1/auth/google */}
-        {/* <Button
-          onClick={() => window.open(`${config.baseUrl}/auth/google`)}
-          type="button"
-          variant="outline"
-          className="w-full cursor-pointer"
-        >
-          Login with Google
-        </Button> */}
       </div>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}

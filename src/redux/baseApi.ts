@@ -8,5 +8,6 @@ export const baseApi = createApi({
     // allow browser to get cookies from diff origin/domain
     credentials: "include",
   }),
+  tagTypes: ["User"],
   endpoints: () => ({}),
 });

@@ -132,13 +132,18 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <ModeToggle />
           {data?.user?.email && (
-            <Button
-              onClick={handleLogout}
-              variant={"outline"}
-              className="text-sm"
-            >
-              Logout
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button className="text-sm">
+                <Link to={`${data?.user?.role.toLowerCase()}`}>Dashboard</Link>
+              </Button>
+              <Button
+                onClick={handleLogout}
+                variant={"outline"}
+                className="text-sm"
+              >
+                Logout
+              </Button>
+            </div>
           )}
           {!data?.user?.email && (
             <Button asChild className="text-sm">
