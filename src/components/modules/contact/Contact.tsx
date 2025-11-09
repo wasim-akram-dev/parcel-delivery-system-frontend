@@ -1,6 +1,18 @@
+import { toast } from "sonner";
+
 const Contact = () => {
+  const handleSubmit = () => {
+    try {
+      toast.success("Message sent successfully!", {
+        description: "We'll get back to you as soon as possible.",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to send message. Please try again.");
+    }
+  };
   return (
-    <section className="max-w-7xl mx-auto flex flex-col md:flex-row px-6 md:px-24 py-16 md:py-32 gap-12">
+    <section className="max-w-7xl mx-auto flex flex-col md:flex-row px-6 md:px-24 gap-12 relative">
       <div className="w-full md:w-1/3 bg-gradient-to-b from-[#00786f] to-[#4cb9b3] text-white p-8 rounded-lg space-y-6">
         <h2 className="text-2xl font-semibold">Get in touch</h2>
 
@@ -45,6 +57,7 @@ const Contact = () => {
       </div>
 
       {/* <!-- Right Side - Contact Form --> */}
+
       <div className="w-full md:w-2/3 space-y-6 bg-white dark:bg-slate-900 border-0 dark:border-2 p-5 rounded-lg shadow-2xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
@@ -70,9 +83,8 @@ const Contact = () => {
           className="w-full border border-gray-300 rounded px-4 py-2"
         />
         <input
-          type="tel"
+          type="text"
           placeholder="Phone Number"
-          value="(+995) 555-55-55-55"
           className="w-full border border-gray-300 rounded px-4 py-2"
         />
         <textarea
@@ -93,7 +105,10 @@ const Contact = () => {
           </label>
         </div>
 
-        <button className="w-full bg-[#00786f] hover:bg-[#005e57] text-white py-3 rounded">
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-[#00786f] hover:bg-[#005e57] text-white py-3 rounded"
+        >
           Send Message
         </button>
       </div>
