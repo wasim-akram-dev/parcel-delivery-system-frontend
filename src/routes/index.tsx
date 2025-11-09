@@ -3,6 +3,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { role } from "@/constraints/role";
 import AboutPage from "@/pages/About/AboutPage";
 import ContactPage from "@/pages/Contact/ContactPage";
+import FAQ from "@/pages/FAQ";
 import Features from "@/pages/Features";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login";
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         Component: Features,
         path: "features",
+      },
+      {
+        Component: FAQ,
+        path: "faq",
       },
     ],
   },
