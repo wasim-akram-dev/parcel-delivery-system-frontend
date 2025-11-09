@@ -1,9 +1,13 @@
-import About from "@/components/modules/about/About";
+import AboutFeatures from "@/components/modules/about/AboutFeatures";
+import AboutHero from "@/components/modules/about/AboutHero";
+import AboutJourney from "@/components/modules/about/AboutJourney";
 
 const AboutPage = () => {
   return (
     <>
-      <About />
+      <AboutHero />
+      <AboutFeatures />
+      <AboutJourney />
     </>
   );
 };
