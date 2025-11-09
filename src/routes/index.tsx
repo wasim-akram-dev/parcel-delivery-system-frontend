@@ -5,6 +5,7 @@ import AboutPage from "@/pages/About/AboutPage";
 import ContactPage from "@/pages/Contact/ContactPage";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login";
+import NotFound from "@/pages/NotFound";
 import Register from "@/pages/Register";
 import Unauthorized from "@/pages/Unauthorized";
 import type { TRole } from "@/types";
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/unauthorized",
     Component: Unauthorized,
+  },
+  {
+    path: "*",
+    Component: NotFound,
   },
 ]);
 
