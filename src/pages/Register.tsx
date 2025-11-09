@@ -1,5 +1,5 @@
 import Logo from "@/assets/icons/Logo";
-import ParcelRegister from "@/assets/images/happy-senior-man-receiving-packages-signing-postman-home-delivery (1).jpg";
+import ParcelRegister from "@/assets/images/senior-man-receiving-packages.jpg";
 import { RegisterForm } from "@/components/modules/Authentication/RegisterForm";
 import { Link } from "react-router";
 

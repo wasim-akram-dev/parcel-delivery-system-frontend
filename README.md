@@ -42,7 +42,7 @@ npm install
 cp .env.example .env
 
 # 4. Update .env with your URL,
-VITE_BASE_URL=http://localhost:5000/api/v1
+VITE_BASE_URL=https://runner-courier-server.vercel.app/api/v1
 
 
 # 5. Run locally

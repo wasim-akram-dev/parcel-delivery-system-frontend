@@ -1,5 +1,5 @@
 import Logo from "@/assets/icons/Logo";
-import ParcelLogin from "@/assets/images/delivery-male-with-packages (1).jpg";
+import ParcelLogin from "@/assets/images/delivery-male-with-packages.jpg";
 import { LoginForm } from "@/components/modules/Authentication/LoginForm";
 import { Link } from "react-router";
 
