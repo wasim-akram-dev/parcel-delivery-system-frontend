@@ -1,1 +1,291 @@
-# Welcome to Parcel Delivery System Frontend
+# 📦 Welcome to Runner | A Parcel Delivery System
+
+A modern, modular, and secure web application for managing parcel deliveries. Built with React, TypeScript, TailwindCSS, Redux Toolkit & RTK QueryRTK Query for robust state management and API integration.
+
+---
+
+Live Demo: [Runner | A Parcel Delivery System](https://delivery-runner.vercel.app/).
+
+## 🧱 Features
+
+- Authentication: Email/password login, JWT
+- Role-based Access to dashboard: Sender, Receiver, Admin
+- Manage users, parcels, and deliveries
+- Parcel Lifecycle: Request, Approve, Picked, Dispatch, In Transit, Deliver, Block, Cancel, Flagged
+- Real-time Tracking: Track parcels by tracking ID
+- Responsive UI: Modern design with ShadCn/UI and Tailwind CSS
+- Global Error Handling: User-friendly error messages
+
+## 🧩 Tech Stack
+
+- React + Vite — Frontend framework
+- TypeScript — Type safety
+- shadCn/UI — Modern UI components
+- Tailwind CSS — Utility-first styling
+- RTK Query — Data fetching and caching
+- Sonner — Toast notifications
+- React Hook Form + Zod — Forms and validation
+- Lucide Icons — Icon set
+
+---
+
+## 🛠️ Getting Started
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/wasim-akram-dev/parcel-delivery-system-frontend.git
+cd parcel-delivery-system-frontend
+# 2. Install dependencies
+npm install
+
+# 3. Configure environment
+cp .env.example .env
+
+# 4. Update .env with your URL,
+VITE_BASE_URL=http://localhost:5000/api/v1
+
+
+# 5. Run locally
+npm run dev
+```
+
+---
+
+## 🔐 Email and password for testing dummy users:
+
+```
+// SENDER
+email: "john.sender@parcel.com",
+password: "sender123"
+
+// RECEIVER
+email: "bob.receiver@parcel.com",
+ password: "receiver123",
+
+ // ADMIN
+email: "admin@parcel.com",
+password: "Ph@12345678"
+```
+
+---
+
+## 📦 Public Parcel Status
+
+Use this below sample tracking id:
+
+- `TRK-20250826-404197`
+
+## 📁 Folder Structure
+
+```
+.
+├── README.md
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│   └── vite.svg
+├── src
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── icons
+│   │   │   └── Logo.tsx
+│   │   ├── images
+│   │   │   ├── parcel-login.jpg
+│   │   │   └── parcel-register.jpg
+│   │   └── react.svg
+│   ├── components
+│   │   ├── NotFound.tsx
+│   │   ├── app-sidebar.tsx
+│   │   ├── layout
+│   │   │   ├── CommonLayout.tsx
+│   │   │   ├── DashboardLayout.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── ModeToggle.tsx
+│   │   │   └── Navbar.tsx
+│   │   ├── modules
+│   │   │   ├── about
+│   │   │   │   ├── AboutFeatures.tsx
+│   │   │   │   ├── AboutHero.tsx
+│   │   │   │   └── AboutJourney.tsx
+│   │   │   ├── admin
+│   │   │   │   ├── parcels
+│   │   │   │   │   ├── AdminParcelDetails.tsx
+│   │   │   │   │   ├── AdminParcelModal.tsx
+│   │   │   │   │   ├── AdminParcelTimeLine.tsx
+│   │   │   │   │   ├── AdminParcelsTable.tsx
+│   │   │   │   │   └── analytics
+│   │   │   │   │       ├── DeliveryStatysBarChart.tsx
+│   │   │   │   │       ├── OverViewCards.tsx
+│   │   │   │   │       ├── ParcelsCharts.tsx
+│   │   │   │   │       ├── ShipmentBarChart.tsx
+│   │   │   │   │       ├── ShippingTypeChart.tsx
+│   │   │   │   │       └── TypePieChart.tsx
+│   │   │   │   └── users
+│   │   │   │       ├── CreateStuff.tsx
+│   │   │   │       └── UsersTable.tsx
+│   │   │   ├── authentication
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   └── RegisterForm.tsx
+│   │   │   ├── contact
+│   │   │   │   ├── ContactHero.tsx
+│   │   │   │   └── contactForm.tsx
+│   │   │   ├── faq
+│   │   │   │   ├── FaqContact.tsx
+│   │   │   │   ├── FaqHero.tsx
+│   │   │   │   └── FaqSection.tsx
+│   │   │   ├── features
+│   │   │   │   ├── FeaturesBenefit.tsx
+│   │   │   │   ├── FeaturesCTA.tsx
+│   │   │   │   ├── FeaturesGrid.tsx
+│   │   │   │   └── FeaturesHero.tsx
+│   │   │   ├── home
+│   │   │   │   ├── Feature.tsx
+│   │   │   │   ├── Hero.tsx
+│   │   │   │   ├── HomeAbout.tsx
+│   │   │   │   ├── HomeCTA.tsx
+│   │   │   │   ├── HomeFaq.tsx
+│   │   │   │   └── HomeTestimonials.tsx
+│   │   │   ├── receiver
+│   │   │   │   ├── ReceiverHistoryParcelTable.tsx
+│   │   │   │   └── ReceiverIncomingParcelTable.tsx
+│   │   │   ├── sender
+│   │   │   │   ├── SendParcelModal.tsx
+│   │   │   │   ├── SenderParcelTable.tsx
+│   │   │   │   ├── StatusDetails.tsx
+│   │   │   │   └── StatusTimeLine.tsx
+│   │   │   ├── testimonials
+│   │   │   │   ├── TestimonialsCTA.tsx
+│   │   │   │   └── TestimonialsSection.tsx
+│   │   │   └── trackParcel
+│   │   │       ├── HelpSection.tsx
+│   │   │       ├── ParcelDetails.tsx
+│   │   │       ├── TimeLine.tsx
+│   │   │       ├── Track.tsx
+│   │   │       ├── TrackParcelForm.tsx
+│   │   │       └── TrackParcelHero.tsx
+│   │   └── ui
+│   │       ├── Password.tsx
+│   │       ├── accordion.tsx
+│   │       ├── alert-dialog.tsx
+│   │       ├── avatar.tsx
+│   │       ├── badge.tsx
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       ├── chart.tsx
+│   │       ├── checkbox.tsx
+│   │       ├── dialog.tsx
+│   │       ├── dropdown-menu.tsx
+│   │       ├── form.tsx
+│   │       ├── input-otp.tsx
+│   │       ├── input.tsx
+│   │       ├── label.tsx
+│   │       ├── nav-user.tsx
+│   │       ├── navigation-menu.tsx
+│   │       ├── pagination.tsx
+│   │       ├── popover.tsx
+│   │       ├── select.tsx
+│   │       ├── separator.tsx
+│   │       ├── shadcn-io
+│   │       │   └── spinner
+│   │       │       └── index.tsx
+│   │       ├── sheet.tsx
+│   │       ├── sidebar.tsx
+│   │       ├── skeleton.tsx
+│   │       ├── sonner.tsx
+│   │       ├── table.tsx
+│   │       ├── textarea.tsx
+│   │       └── tooltip.tsx
+│   ├── config
+│   │   └── index.ts
+│   ├── context
+│   │   └── theme-context.ts
+│   ├── hooks
+│   │   ├── use-mobile.ts
+│   │   └── useTheme.ts
+│   ├── index.css
+│   ├── lib
+│   │   ├── axios.ts
+│   │   ├── emailjs.ts
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── About.tsx
+│   │   ├── Contact.tsx
+│   │   ├── FAQ.tsx
+│   │   ├── Features.tsx
+│   │   ├── HomePage.tsx
+│   │   ├── Login.tsx
+│   │   ├── Register.tsx
+│   │   ├── Testimonials.tsx
+│   │   ├── TrackParcel.tsx
+│   │   ├── Unauthorized.tsx
+│   │   ├── Verify.tsx
+│   │   ├── admin
+│   │   │   ├── analytics
+│   │   │   │   └── Analytics.tsx
+│   │   │   ├── parcels
+│   │   │   │   ├── ViewParcelDetails.tsx
+│   │   │   │   └── ViewParcels.tsx
+│   │   │   └── user
+│   │   │       └── AllUsers.tsx
+│   │   ├── receiver
+│   │   │   ├── DeliveryHistory.tsx
+│   │   │   └── IncomingParcels.tsx
+│   │   └── sender
+│   │       ├── MyParcels.tsx
+│   │       └── ParcelStatus.tsx
+│   ├── providers
+│   │   └── theme-provider.tsx
+│   ├── redux
+│   │   ├── api
+│   │   │   ├── axiosBaseQuery.ts
+│   │   │   └── baseApi.ts
+│   │   ├── features
+│   │   │   ├── auth
+│   │   │   │   └── authApi.ts
+│   │   │   ├── coupon
+│   │   │   │   └── couponApi.ts
+│   │   │   ├── parcel
+│   │   │   │   └── parcelApi.ts
+│   │   │   └── user
+│   │   │       └── userApi.ts
+│   │   ├── hooks.ts
+│   │   └── store.ts
+│   ├── routes
+│   │   ├── adminSidebarItems.ts
+│   │   ├── constants.ts
+│   │   ├── index.tsx
+│   │   ├── receiverSidebarItems.ts
+│   │   └── senderSidebarItems.ts
+│   ├── types
+│   │   ├── auth-type.ts
+│   │   ├── index.ts
+│   │   ├── parcel-type.ts
+│   │   ├── sender-parcel-type.ts
+│   │   └── user-type.ts
+│   ├── utils
+│   │   ├── generateRoutes.ts
+│   │   ├── getNameInitials.ts
+│   │   ├── getSidebarItems.ts
+│   │   ├── getStatusColor.ts
+│   │   └── withAuth.tsx
+│   └── vite-env.d.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vercel.json
+└── vite.config.ts
+```
+
+---
+
+## 👤 User Roles
+
+| Role       | Responsibilities                                          |
+| ---------- | --------------------------------------------------------- |
+| `SENDER`   | send/cancel/delete parcels, view own parcels, status      |
+| `RECEIVER` | View incoming parcels, confirm delivery, delivery history |
+| `ADMIN`    | Manage users, create admins and personnel, view analytics |
