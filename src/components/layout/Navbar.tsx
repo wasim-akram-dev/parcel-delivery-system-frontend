@@ -25,6 +25,7 @@ import { ModeToggle } from "./mode-toggle";
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/features", label: "Features" },
+  { href: "track-parcel", label: "Track Parcel" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },

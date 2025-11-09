@@ -23,7 +23,7 @@ function AboutJourney() {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Founded in{" "}
                 <span className="font-semibold text-primary">2025</span>,
-                <span className="text-teal-600 font-bold"> Runner</span> Parcel
+                <span className="text-teal-600 font-bold"> Runner</span> Courier
                 was born out of a passion for making delivery simple,
                 affordable, and accessible. Today, we serve thousands of happy
                 customers and continue to innovate in the logistics space.

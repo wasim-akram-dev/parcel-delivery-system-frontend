@@ -1,10 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone } from "lucide-react";
-import { Link } from "react-router";
 
-function FaqContact() {
+export default function HelpSection() {
   return (
     <section className="py-20 relative">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-muted/30"></div>
@@ -12,24 +10,20 @@ function FaqContact() {
         <Card className="p-8 shadow-xl border-0 bg-gradient-to-br from-card to-card/50">
           <CardHeader className="text-center mb-8">
             <Badge variant="outline" className="mb-4 w-fit mx-auto">
-              Need More Help?
+              Need Help?
             </Badge>
             <CardTitle className="text-3xl md:text-4xl font-black tracking-tight">
-              Still Have Questions?
+              Contact Support
             </CardTitle>
-            <p className="text-lg text-muted-foreground">
-              Our support team is here to help you with any questions or
-              concerns
-            </p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-2xl mb-4">
                   <Phone className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Call Us</h3>
-                <p className="text-primary font-semibold">+8801919191919</p>
+                <p className="text-primary font-semibold">+880 1919191919</p>
                 <p className="text-sm text-muted-foreground">Available 24/7</p>
               </div>
               <div className="text-center">
@@ -45,16 +39,9 @@ function FaqContact() {
                 </p>
               </div>
             </div>
-            <div className="text-center">
-              <Button asChild size="lg">
-                <Link to="/contact">Contact Support</Link>
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </div>
     </section>
   );
 }
-
-export default FaqContact;

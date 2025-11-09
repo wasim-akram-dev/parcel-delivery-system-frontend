@@ -34,14 +34,14 @@ const HeroSection = () => {
             {" "}
             <Link
               className="inline-block rounded border border-teal-600 bg-teal-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-teal-700"
-              to="#"
+              to="/register"
             >
               {" "}
               Get Started{" "}
             </Link>{" "}
             <Link
               className="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-              to="#"
+              to="/about"
             >
               {" "}
               Learn More{" "}

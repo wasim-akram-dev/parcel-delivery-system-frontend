@@ -9,6 +9,7 @@ import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login";
 import NotFound from "@/pages/NotFound";
 import Register from "@/pages/Register";
+import TrackParcel from "@/pages/TrackParcel";
 import Unauthorized from "@/pages/Unauthorized";
 import type { TRole } from "@/types";
 import { generateRoutes } from "@/utils/generateRoutes";
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         Component: FAQ,
         path: "faq",
+      },
+      {
+        Component: TrackParcel,
+        path: "track-parcel",
       },
     ],
   },

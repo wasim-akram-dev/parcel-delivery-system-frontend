@@ -35,7 +35,7 @@ function AboutHero() {
           </Badge>
           <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tight">
             About
-            <span className="block text-primary">Runner Parcel</span>
+            <span className="block text-primary">Runner Courier</span>
           </h1>
           <p className="text-xl mb-10 text-muted-foreground mx-auto leading-relaxed">
             Runner is a household name to all in Bangladesh for having been the
