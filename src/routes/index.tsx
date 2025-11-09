@@ -3,6 +3,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { role } from "@/constraints/role";
 import AboutPage from "@/pages/About/AboutPage";
 import ContactPage from "@/pages/Contact/ContactPage";
+import Features from "@/pages/Features";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login";
 import NotFound from "@/pages/NotFound";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         Component: ContactPage,
+      },
+      {
+        Component: Features,
+        path: "features",
       },
     ],
   },
