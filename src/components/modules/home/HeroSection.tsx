@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const HeroSection = () => {
   return (
-    <section className="bg-white w-full relative lg:grid  lg:place-content-center">
+    <section className="bg-white w-full relative lg:grid  lg:place-content-center font-sans">
       {" "}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
