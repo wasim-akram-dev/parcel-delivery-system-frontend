@@ -4,7 +4,7 @@ A modern, modular, and secure web application for managing parcel deliveries. Bu
 
 ---
 
-Live Demo: [Runner | A Parcel Delivery System](https://delivery-runner.vercel.app/).
+Live Demo: [Runner | A Parcel Delivery System](https://runner-courier.vercel.app).
 
 ## 🧱 Features
 
@@ -54,17 +54,19 @@ npm run dev
 ## 🔐 Email and password for testing dummy users:
 
 ```
-// SENDER
-email: "john.sender@parcel.com",
-password: "sender123"
+--------ADMIN--------
+email: wasim.akram@gmail.com
+password: Aa@12345
 
-// RECEIVER
-email: "bob.receiver@parcel.com",
- password: "receiver123",
+-------SENDER-------
+email: md.jashim@gmail.com
+email: kibriya@gmail.com
+password: Aa@12345
 
- // ADMIN
-email: "admin@parcel.com",
-password: "Ph@12345678"
+-------RECEIVER-------
+email: hasan.rahman@gmail.com
+email: akash.hossain@gmail.com
+password: Aa@12345
 ```
 
 ---
