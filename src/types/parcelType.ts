@@ -1,0 +1,6 @@
+export enum ParcelType {
+  DOCUMENTS = "DOCUMENTS",
+  ELECTRONICS = "ELECTRONICS",
+  FOODS = "FOODS",
+  ACCESSORIES = "ACCESSORIES",
+}

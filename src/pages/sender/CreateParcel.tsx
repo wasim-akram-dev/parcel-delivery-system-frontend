@@ -8,8 +8,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 import { useCreateParcelMutation } from "@/redux/features/parcels/parcels.api";
+import { ParcelType } from "@/types/parcelType";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -17,18 +26,24 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 const parcelSchema = z.object({
-  sender_email: z.email(),
   receiver_email: z.email(),
   fromAddress: z
     .string()
     .min(2, { error: "Please Provide From Address" })
     .max(50),
   toAddress: z.string().min(2, { error: "Please Provide To Address" }).max(50),
-  parcelType: z
-    .string()
-    .min(2, { error: "Please Provide Parcel Type" })
-    .max(50),
-  phone: z.string().min(3, { error: "Please Provide Phone Number" }).max(20),
+  parcelType: z.enum([
+    ParcelType.DOCUMENTS,
+    ParcelType.ELECTRONICS,
+    ParcelType.FOODS,
+    ParcelType.ACCESSORIES,
+  ]),
+  phone: z
+    .string({ error: "Phone Number must be string" })
+    .regex(/^(?:\+8801\d{9}|01\d{9})$/, {
+      message:
+        "Phone number must be valid for Bangladesh. Format: +8801XXXXXXXXX or 01XXXXXXXXX",
+    }),
   weight: z
     .string()
     .min(1, { error: "Please Provide Parcel Weight In Number" })
@@ -44,16 +59,17 @@ const CreateParcel = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   const [createParcel] = useCreateParcelMutation();
+  const { data: userInfo } = useUserInfoQuery(undefined);
   const navigate = useNavigate();
-
+  console.log("data", userInfo);
+  console.log("email", userInfo?.user?.email);
   const form = useForm<z.infer<typeof parcelSchema>>({
     resolver: zodResolver(parcelSchema),
     defaultValues: {
-      sender_email: "",
       receiver_email: "",
       fromAddress: "",
       toAddress: "",
-      parcelType: "",
+      parcelType: ParcelType.DOCUMENTS,
       phone: "",
       weight: "",
       deliveryFee: "",
@@ -62,7 +78,7 @@ const CreateParcel = ({
 
   const onSubmit = async (data: z.infer<typeof parcelSchema>) => {
     const parcelInfo = {
-      sender_email: data.sender_email,
+      sender_email: userInfo?.user?.email,
       receiver_email: data.receiver_email,
       fromAddress: data.fromAddress,
       toAddress: data.toAddress,
@@ -109,23 +125,6 @@ const CreateParcel = ({
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="sender_email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Sender Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="john.doe@company.com"
-                      type="email"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="receiver_email"
               render={({ field }) => (
                 <FormItem>
@@ -167,19 +166,7 @@ const CreateParcel = ({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="parcelType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Parcel Type</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Documents" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <FormField
               control={form.control}
               name="phone"
@@ -193,6 +180,34 @@ const CreateParcel = ({
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="parcelType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Select Your Parcel Type</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl className="w-full">
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select A Parcel Type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="DOCUMENTS">Documents</SelectItem>
+                      <SelectItem value="ELECTRONICS">Electronics</SelectItem>
+                      <SelectItem value="FOODS">Foods</SelectItem>
+                      <SelectItem value="ACCESSORIES">Accessories</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="weight"

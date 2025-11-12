@@ -10,8 +10,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Password from "@/components/ui/Password";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
+import { Role } from "@/types/userType";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
@@ -27,11 +35,30 @@ const registerSchema = z
       })
       .max(50),
     email: z.email(),
-    password: z.string().min(8, { error: "Password is too short" }),
+    password: z
+      .string({ error: "Password must be string" })
+      .min(8, { message: "Password must be at least 8 characters long." })
+      .regex(/^(?=.*[A-Z])/, {
+        message: "Password must contain at least 1 uppercase letter.",
+      })
+      .regex(/^(?=.*[!@#$%^&*])/, {
+        message: "Password must contain at least 1 special character.",
+      })
+      .regex(/^(?=.*\d)/, {
+        message: "Password must contain at least 1 number.",
+      }),
     confirmPassword: z
       .string()
       .min(8, { error: "Confirm Password is too short" }),
-    role: z.string(),
+    role: z.enum([Role.SENDER, Role.RECEIVER]),
+    defaultAddress: z.string().min(5).max(200).optional(),
+    phone: z
+      .string({ error: "Phone Number must be string" })
+      .regex(/^(?:\+8801\d{9}|01\d{9})$/, {
+        message:
+          "Phone number must be valid for Bangladesh. Format: +8801XXXXXXXXX or 01XXXXXXXXX",
+      })
+      .optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password do not match",
@@ -42,7 +69,7 @@ export function RegisterForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const [register] = useRegisterMutation();
+  const [register, { isLoading }] = useRegisterMutation();
 
   const navigate = useNavigate();
 
@@ -53,7 +80,9 @@ export function RegisterForm({
       email: "",
       password: "",
       confirmPassword: "",
-      role: "",
+      role: Role.SENDER,
+      defaultAddress: "",
+      phone: "",
     },
   });
 
@@ -63,6 +92,8 @@ export function RegisterForm({
       email: data.email,
       password: data.password,
       role: data.role,
+      defaultAddress: data.defaultAddress,
+      phone: data.phone,
     };
 
     try {
@@ -118,7 +149,7 @@ export function RegisterForm({
                     />
                   </FormControl>
                   <FormDescription className="sr-only">
-                    This is your public display name.
+                    This is your email input.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -134,7 +165,7 @@ export function RegisterForm({
                     <Password {...field} />
                   </FormControl>
                   <FormDescription className="sr-only">
-                    This is your public display name.
+                    This is your password input.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -150,7 +181,34 @@ export function RegisterForm({
                     <Password {...field} />
                   </FormControl>
                   <FormDescription className="sr-only">
-                    This is your public display name.
+                    This is your confirm password input.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Select Your Role</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl className="w-full">
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a role" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="SENDER">Sender</SelectItem>
+                      <SelectItem value="RECEIVER">Receiver</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormDescription className="sr-only">
+                    This is your role selection.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -159,22 +217,38 @@ export function RegisterForm({
 
             <FormField
               control={form.control}
-              name="role"
+              name="defaultAddress"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Role</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Example: SENDER | RECEIVER"
-                      {...field}
-                    />
+                    <Input placeholder="123 Main St" type="text" {...field} />
                   </FormControl>
+                  <FormDescription className="sr-only">
+                    This is your address input.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone</FormLabel>
+                  <FormControl>
+                    <Input placeholder="01819112233" type="text" {...field} />
+                  </FormControl>
+                  <FormDescription className="sr-only">
+                    This is your phone number input.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <Button type="submit" className="w-full">
+            <Button disabled={isLoading} type="submit" className="w-full">
               Submit
             </Button>
           </form>

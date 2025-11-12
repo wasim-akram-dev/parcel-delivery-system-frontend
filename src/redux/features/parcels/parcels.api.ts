@@ -2,13 +2,6 @@ import { baseApi } from "@/redux/baseApi";
 
 const parcelsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (userInfo) => ({
-        url: "/auth/login",
-        method: "POST",
-        body: userInfo,
-      }),
-    }),
     confirmParcel: builder.mutation({
       query: (id) => ({
         url: `/parcels/confirm-parcel/${id}`,
@@ -32,6 +25,7 @@ const parcelsApi = baseApi.injectEndpoints({
         url: "/parcels/me",
         method: "GET",
       }),
+      providesTags: ["Parcel"],
     }),
     ViewIncomingParcels: builder.query({
       query: () => ({
@@ -51,12 +45,19 @@ const parcelsApi = baseApi.injectEndpoints({
         method: "POST",
         body: parcelInfo,
       }),
+      invalidatesTags: ["Parcel"],
+    }),
+    cancelParcel: builder.mutation({
+      query: (id) => ({
+        url: `/parcels/cancel/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Parcel"],
     }),
   }),
 });
 
 export const {
-  useLoginMutation,
   useGetAllParcelsQuery,
   useGetAllUsersQuery,
   useGetAllCreatedParcelsQuery,
@@ -64,4 +65,5 @@ export const {
   useViewDeliveryHistoryQuery,
   useConfirmParcelMutation,
   useCreateParcelMutation,
+  useCancelParcelMutation,
 } = parcelsApi;
