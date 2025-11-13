@@ -13,7 +13,25 @@ const parcelsApi = baseApi.injectEndpoints({
         url: "/parcels/view-all-parcels",
         method: "GET",
       }),
+      providesTags: ["Parcel"],
     }),
+    updateParcelStatus: builder.mutation({
+      query: ({ id, parcel_status }) => ({
+        url: `/parcels/update-parcel-status/${id}`,
+        method: "PATCH",
+        body: { parcel_status },
+      }),
+      invalidatesTags: ["Parcel"],
+    }),
+    updateParcelBlockStatus: builder.mutation({
+      query: ({ id, isBlocked }) => ({
+        url: `/parcels/update-parcel-block/${id}`,
+        method: "PATCH",
+        body: { isBlocked },
+      }),
+      invalidatesTags: ["Parcel"],
+    }),
+
     getAllUsers: builder.query({
       query: () => ({
         url: "/parcels/view-all-users",
@@ -76,4 +94,6 @@ export const {
   useCreateParcelMutation,
   useCancelParcelMutation,
   useUpdateUserActiveStatusMutation,
+  useUpdateParcelStatusMutation,
+  useUpdateParcelBlockStatusMutation,
 } = parcelsApi;

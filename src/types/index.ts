@@ -31,6 +31,15 @@ export interface IParcel {
     status: string;
     timestamp: string;
   }[];
+  isBlocked: boolean;
+  phone: string;
+  isFragile?: boolean;
+  deliveryFee: number;
+  delivery_date?: Date;
+  isCancelled?: boolean;
+  isReturned?: boolean;
+  isHeld?: boolean;
+  updatedAt?: Date;
 }
 
 // view-all-user interface
