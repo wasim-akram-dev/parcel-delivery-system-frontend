@@ -1,6 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,15 +11,16 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { VersionSwitcher } from "@/components/version-switcher";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 import { getSidebarItems } from "@/utils/getSidebarItems";
+import { IconInnerShadowTop } from "@tabler/icons-react";
 import * as React from "react";
 import { Link } from "react-router";
+import { NavUser } from "./nav-user";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: userInfo } = useUserInfoQuery(undefined);
-  // console.log('userInfo', userInfo);
+  console.log("userInfo", userInfo);
 
   const data = {
     // navMain: adminSidebarItems
@@ -29,11 +31,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher
-        // versions={data.versions}
-        // defaultVersion={data.versions[0]}
-        />
-        {/* <SearchForm /> */}
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-1.5"
+            >
+              <Link to="/">
+                <IconInnerShadowTop className="!size-5" />
+                <span className="text-base font-semibold">Runner Courier</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
@@ -55,6 +65,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarRail />
+      <SidebarFooter>
+        <NavUser user={userInfo?.user} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
