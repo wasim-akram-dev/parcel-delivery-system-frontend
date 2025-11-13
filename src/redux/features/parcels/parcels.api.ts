@@ -19,6 +19,7 @@ const parcelsApi = baseApi.injectEndpoints({
         url: "/parcels/view-all-users",
         method: "GET",
       }),
+      providesTags: ["User"],
     }),
     getAllCreatedParcels: builder.query({
       query: () => ({
@@ -54,6 +55,14 @@ const parcelsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Parcel"],
     }),
+    updateUserActiveStatus: builder.mutation({
+      query: ({ id, isActive }) => ({
+        url: `/parcels/update-user-active-status/${id}`,
+        method: "PATCH",
+        body: { isActive },
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -66,4 +75,5 @@ export const {
   useConfirmParcelMutation,
   useCreateParcelMutation,
   useCancelParcelMutation,
+  useUpdateUserActiveStatusMutation,
 } = parcelsApi;

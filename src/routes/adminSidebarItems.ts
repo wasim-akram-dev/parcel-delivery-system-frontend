@@ -4,22 +4,22 @@ import type { ISidebarItem } from "@/types";
 
 export const adminSidebarItems: ISidebarItem[] = [
   {
-    title: "Parcels",
+    title: "Users",
     items: [
       {
-        title: "View all parcels",
-        url: "view-all-parcels",
-        component: AllParcels,
+        title: "View & Manage users",
+        url: "view-all-users",
+        component: AllUsers,
       },
     ],
   },
   {
-    title: "Users",
+    title: "Parcels",
     items: [
       {
-        title: "View all users",
-        url: "view-all-users",
-        component: AllUsers,
+        title: "View & Manage parcels",
+        url: "view-all-parcels",
+        component: AllParcels,
       },
     ],
   },
