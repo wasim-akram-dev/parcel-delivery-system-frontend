@@ -1,6 +1,7 @@
 import ConfirmParcel from "@/pages/receiver/ConfirmParcel";
 import ViewDeliveryHistory from "@/pages/receiver/ViewDeliveryHistory";
 import ViewIncomingParcels from "@/pages/receiver/ViewIncomingParcels";
+import TrackParcel from "@/pages/TrackParcel";
 import type { ISidebarItem } from "@/types";
 
 export const receiverSidebarItems: ISidebarItem[] = [
@@ -10,7 +11,7 @@ export const receiverSidebarItems: ISidebarItem[] = [
       {
         title: "View incoming parcels",
         url: "view-incoming-parcels",
-        isActive: true,
+        // isActive: true,
         component: ViewIncomingParcels,
       },
     ],
@@ -32,6 +33,16 @@ export const receiverSidebarItems: ISidebarItem[] = [
         title: "View delivery history",
         url: "view-delivery--history",
         component: ViewDeliveryHistory,
+      },
+    ],
+  },
+  {
+    title: "Trackings",
+    items: [
+      {
+        title: "Tracking A Parcel",
+        url: "track-parcel",
+        component: TrackParcel,
       },
     ],
   },

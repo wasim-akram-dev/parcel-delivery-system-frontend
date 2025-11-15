@@ -1,5 +1,14 @@
-import { IconDotsVertical, IconLogout } from "@tabler/icons-react";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -16,6 +25,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hooks";
+import { IconDotsVertical, IconLogout } from "@tabler/icons-react";
+import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 export function NavUser({
   user,
@@ -28,6 +42,25 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const [logout] = useLogoutMutation();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = async () => {
+    try {
+      const res = await logout(undefined);
+      dispatch(authApi.util.resetApiState());
+      if (res?.data) {
+        toast.success("Logged Out Successfully");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("error", error);
+      const err = error as Error;
+      toast("❌ Failed to login!", {
+        description: err?.message || "Something went wrong",
+      });
+    }
+  };
 
   return (
     <SidebarMenu>
@@ -83,9 +116,31 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <IconLogout />
-              Log out
+              {/* <IconLogout />
+              Log out */}
             </DropdownMenuItem>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant={"destructive"} className="text-sm">
+                  <IconLogout />
+                  Log out
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action will logout your account from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleLogout}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

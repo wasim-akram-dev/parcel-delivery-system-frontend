@@ -21,7 +21,7 @@ function TrackParcelForm() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/v1/parcels/track/${trackingId}`
+        `https://runner-courier-server.vercel.app/api/v1/parcels/track/${trackingId}`
       );
       const data = await res.json();
 

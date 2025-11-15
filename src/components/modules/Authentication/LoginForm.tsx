@@ -37,9 +37,10 @@ export function LoginForm({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
-      if (err.data.message === "Password does not match") {
-        toast.error("Invalid credentials");
-      }
+      // if (err.data.message === "Password is Incorrect") {
+      //   toast.error("Invalid credentials");
+      // }
+      toast.error(`${err?.data?.message}`);
     }
   };
 

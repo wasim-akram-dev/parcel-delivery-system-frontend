@@ -7,6 +7,7 @@ const parcelsApi = baseApi.injectEndpoints({
         url: `/parcels/confirm-parcel/${id}`,
         method: "PATCH",
       }),
+      invalidatesTags: ["Parcel"],
     }),
     getAllParcels: builder.query({
       query: () => ({
@@ -51,12 +52,14 @@ const parcelsApi = baseApi.injectEndpoints({
         url: "/parcels/incoming-parcels",
         method: "GET",
       }),
+      providesTags: ["Parcel"],
     }),
     ViewDeliveryHistory: builder.query({
       query: () => ({
         url: "/parcels/delivery-history",
         method: "GET",
       }),
+      providesTags: ["Parcel"],
     }),
     createParcel: builder.mutation({
       query: (parcelInfo) => ({

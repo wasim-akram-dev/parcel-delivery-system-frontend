@@ -63,7 +63,7 @@ const router = createBrowserRouter([
     path: "/admin",
     Component: withAuth(DashboardLayout, role.admin as TRole),
     children: [
-      { index: true, element: <Navigate to="/admin/view-all-parcels" /> },
+      { index: true, element: <Navigate to="/admin/overview" /> },
       ...generateRoutes(adminSidebarItems),
     ],
   },

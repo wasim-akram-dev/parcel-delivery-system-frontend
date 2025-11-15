@@ -1,5 +1,6 @@
 import CreateParcel from "@/pages/sender/CreateParcel";
 import ViewParcels from "@/pages/sender/ViewParcels";
+import TrackParcel from "@/pages/TrackParcel";
 import type { ISidebarItem } from "@/types";
 
 export const senderSidebarItems: ISidebarItem[] = [
@@ -22,6 +23,16 @@ export const senderSidebarItems: ISidebarItem[] = [
         url: "view-parcels",
         // isActive: true,
         component: ViewParcels,
+      },
+    ],
+  },
+  {
+    title: "Trackings",
+    items: [
+      {
+        title: "Tracking A Parcel",
+        url: "track-parcel",
+        component: TrackParcel,
       },
     ],
   },
